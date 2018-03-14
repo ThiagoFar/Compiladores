@@ -9,10 +9,6 @@ options
   language=Java;
 }
 
-tokens
-{
-  TK_class
-}
 
 LCURLY : '{';
 RCURLY : '}';
