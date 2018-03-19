@@ -13,14 +13,26 @@ options
 LCURLY : '{';
 RCURLY : '}';
 
+CHARTEST:
+  '\''('c')'\'';
+
 ID  :
   ('a'..'z' | 'A'..'Z')+;
+
+
+
+CHARLIT:
+  '\''('0'..'z')'\'';
+
+
+
+
 
 WS_ : (' ' | '\n' ) -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-CHAR : '\'' (ESC|~'\'') '\'';
+
 STRING : '"' (ESC|~'"')* '"';
 
 fragment
