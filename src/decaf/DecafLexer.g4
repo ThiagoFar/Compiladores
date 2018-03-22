@@ -14,11 +14,8 @@ LCURLY : '{';
 RCURLY : '}';
 
 
-
 ID  :
-  ('a'..'z' | 'A'..'Z')+;
-
-
+  ('_'|LETTER)(LETTER|DIGIT|'_')*;
  
 CHARLIT:
  '\''(' '..'!' | '#'..'&' | '('..'[' | ']'..'~' |ESCZ )'\''  ;
@@ -27,7 +24,6 @@ STRINGLIT:
 '"' (CHARLIT*) '"';
  
 
-WS_ : (' ' | '\n' ) -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
@@ -35,7 +31,15 @@ SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 STRING : '"' (ESC|~'"')* '"';
 
 fragment
+DIGIT  : ('0'..'9');
+
+fragment
+LETTER  : ('a'..'z' | 'A'..'Z');
+
+fragment
 ESC :  '\\' ('n'|'"' );
 
 fragment
 ESCZ : '\\'( 'n' | 't' |'\\'|'\"' | '\'' );
+
+WS_ : (' ' | '\n' ) -> skip;
