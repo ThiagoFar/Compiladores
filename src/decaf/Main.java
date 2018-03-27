@@ -32,7 +32,82 @@ class Main {
 		        			switch (token.getType())
 
 		        			{
-                                                
+                                                case DecafLexer.IF:
+		        				type = " ";
+		        				break;
+
+                                                case DecafLexer.BOOLEAN:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.BOOLEANLITERAL:
+		        				type = " BOOLEANLITERAL";
+		        				break;
+                                                case DecafLexer.BREAK:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.CALLOUT:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.CLASS:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.CONTINUE:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.ELSE:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.FOR:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.INT:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.RETURN:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.VOID:
+		        				type = " ";
+		        				break;
+
+
+                                                case DecafLexer.STRINGLIT:
+		        				type = " STRINGLITERAL";
+		        				break;
+
+                                                case DecafLexer.OP_ATM:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.MINUS:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.OP_COND:
+		        				type = " ";
+		        				break;
+                                                case DecafLexer.LCURLY :
+		        				type = " LCURLY";
+		        				break;
+                                                case DecafLexer.RCURLY :
+		        				type = " RCURLY";
+		        				break;
+                                                case DecafLexer.LBRACKET:
+		        				type = " LBRACKET";
+		        				break;
+                                                case DecafLexer.RBRACKET:
+		        				type = " RBRACKET";
+		        				break;
+                                                case DecafLexer.LPARENTHESIS:
+		        				type = " LPARENTHESIS";
+		        				break;
+                                                case DecafLexer.RPARENTHESIS:
+		        				type = " RPARENTHESIS";
+		        				break;
+                                                 case DecafLexer.HEXDEX:
+		        				type = " HEXADECIMAL";
+		        				break;
+                                                 case DecafLexer.INTLITERAL:
+		        				type = " INTLITERAL";
+		        				break;
 
 		        			case DecafLexer.ID:
 		        				type = " IDENTIFIER";
@@ -41,9 +116,7 @@ class Main {
 		        				type = " CHARLITERAL";
 		        				break;
 		        			
-                                                case DecafLexer.STRINGLIT:
-		        				type = " STRINGLITERAL";
-		        				break;
+                                                
 
                                               
 		        			}
