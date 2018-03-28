@@ -36,7 +36,7 @@ ID  :
  
 CHARLIT: '\''(' '..'!' | '#'..'&' | '('..'[' | ']'..'~' |ESCZ )'\''  ;
 
-STRINGLIT: '"' STRINGLIT* (CHARLIT)* |ID|' '|','|'.'|';'|':'|'?'|'!'|'\\'|','|'\''|'\'' * '"';
+STRINGLIT : '"' (ESCZ|ESC|ID|OP_ATM|' '|','|'.'|';'|':'|'?'|'!'|'\\'|',' ~('"')|DIGIT)* '"';
 
 HEXDEX:'0x' ('0'..'9'|'a'..'f'|'A'..'F')+;
  
@@ -48,10 +48,9 @@ OP_COND: ('>'|'<'|'>='|'<='|'=='|'!='|'&&'|'||');
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-INTLITERAL: (DIGIT)+  JUMP;
+INTLITERAL: (DIGIT)+ (~('a'..'z')) ;
 
-fragment
-JUMP: (' ' | '\n' );
+
 
 fragment
 DIGIT  : ('0'..'9');
@@ -65,4 +64,4 @@ ESC :  '\\' ('n'|'"' );
 fragment
 ESCZ : '\\'( 'n' | 't' |'\\'|'\"' | '\'' );
 
-WS_ : (' ' | '\n' ) -> skip;
+WS_ : (' ' | '\n' |'\t' ) -> skip;

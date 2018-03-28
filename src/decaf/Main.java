@@ -70,6 +70,10 @@ class Main {
 		        				type = " ";
 		        				break;
 
+                                                case DecafLexer.CHARLIT:
+		        				type = " CHARLITERAL";
+		        				break;
+		        			
 
                                                 case DecafLexer.STRINGLIT:
 		        				type = " STRINGLITERAL";
@@ -78,6 +82,8 @@ class Main {
                                                 case DecafLexer.OP_ATM:
 		        				type = " ";
 		        				break;
+
+                                              
                                                 case DecafLexer.MINUS:
 		        				type = " ";
 		        				break;
@@ -103,7 +109,7 @@ class Main {
 		        				type = " RPARENTHESIS";
 		        				break;
                                                  case DecafLexer.HEXDEX:
-		        				type = " HEXADECIMAL";
+		        				type = " INTLITERAL";
 		        				break;
                                                  case DecafLexer.INTLITERAL:
 		        				type = " INTLITERAL";
@@ -112,10 +118,7 @@ class Main {
 		        			case DecafLexer.ID:
 		        				type = " IDENTIFIER";
 		        				break;
-						case DecafLexer.CHARLIT:
-		        				type = " CHARLITERAL";
-		        				break;
-		        			
+						
                                                 
 
                                               
