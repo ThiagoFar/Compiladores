@@ -14,13 +14,15 @@ tokens
   TK_class
 }
 
-
+PROGRAM: 'Program';
 LCURLY : '{';
 RCURLY : '}';
 LBRACKET: '[';
 RBRACKET: ']';
 LPARENTHESIS: '(';
 RPARENTHESIS: ')';
+COMMA: ',';
+SEMICOLON: ';';
 
 IF:'if';
 BOOLEAN : 'boolean';
@@ -41,22 +43,32 @@ ID  :
  
 CHARLIT: '\''(' '..'!' | '#'..'&' | '('..'[' | ']'..'~' |ESCZ )'\''  ;
 
-STRINGLIT : '"' (ESCZ|ESC|ID|OP_ATM|' '|','|'.'|';'|':'|'?'|'!'|'\\'|',' ~('"')|DIGIT)* '"';
+STRINGLIT : '"' (ESCZ|ESC|ID|' '|','|'.'|';'|':'|'?'|'!'|'\\'|',' ~('"')|DIGIT)* '"';
 
 HEXDEX:'0x' ('0'..'9'|'a'..'f'|'A'..'F')+;
  
-OP_ATM: ('+'|'*'|'/'|'%');
 
 MINUS:'-';
-
-OP_COND: ('>'|'<'|'>='|'<='|'=='|'!='|'&&'|'||');
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
 INTLITERAL: (DIGIT)+ (~('a'..'z')) ;
 
+OP_ATRIB: '=';
 
+OP_ATR_DECR: '-=' ;
 
+OP_ATR_INCR: '+=' ;
+
+OP_ARIT: ('+'|'*'|'/'|'%');
+
+OP_REL : ('>'|'<'|'>='|'<=');
+
+OP_EQ : ('=='|'!=') ;
+
+OP_COND: ('&&'|'||');
+
+EXCLAMATION: '!';
 fragment
 DIGIT  : ('0'..'9');
 

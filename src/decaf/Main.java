@@ -87,18 +87,47 @@ class Main {
                                                 case DecafLexer.STRINGLIT:
 		        				type = " STRINGLITERAL";
 		        				break;
-
-                                                case DecafLexer.OP_ATM:
+                                             
+         
+                                                case DecafLexer.OP_ATR_DECR:
 		        				type = " ";
 		        				break;
+         
+                                                case DecafLexer.OP_ATR_INCR:
+		        				type = " ";
+		        				break;
+
+         
+                                                case DecafLexer.OP_ARIT:
+		        				type = " ";
+		        				break;
+
+         
+                                                case DecafLexer.OP_REL:
+		        				type = " ";
+		        				break;
+
+         
+                                                case DecafLexer.OP_EQ:
+		        				type = " ";
+		        				break;
+
+         
+                                                case DecafLexer.OP_COND:
+		        				type = " ";
+		        				break;
+
+         
+                                                case DecafLexer.OP_ATRIB:
+		        				type = " ";
+		        				break;
+
 
                                               
                                                 case DecafLexer.MINUS:
 		        				type = " ";
 		        				break;
-                                                case DecafLexer.OP_COND:
-		        				type = " ";
-		        				break;
+                                              
                                                 case DecafLexer.LCURLY :
 		        				type = " LCURLY";
 		        				break;
