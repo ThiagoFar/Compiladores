@@ -38,12 +38,13 @@ RETURN: 'return';
 VOID: 'void';
 
 
-ID  :
-  ('_'|LETTER)(LETTER|DIGIT|'_')*;
- 
-CHARLIT: '\''(' '..'!' | '#'..'&' | '('..'[' | ']'..'~' |ESCZ )'\''  ;
 
-STRINGLIT : '"' (ESCZ|ESC|ID|' '|','|'.'|';'|':'|'?'|'!'|'\\'|',' ~('"')|DIGIT)* '"';
+ 
+ID :('a'..'z' | 'A'..'Z'|'_')('a'..'z' | 'A'..'Z'|'_'|'0'..'9')*;
+CHARLIT : '\'' (ESC|'a'..'z'|'A'..'Z'|'0'..'9'|~'\''|'\\t'|'\\\\') '\''; 
+STRINGLIT : '"' (ESC|ID|OP_ARIT|' '|','|'.'|';'|':'|'?'|'!'|'\\'|',' ~('"')|INTLIT)* '"';
+INTLIT: ('0'..'9')+;
+
 
 HEXDEX:'0x' ('0'..'9'|'a'..'f'|'A'..'F')+;
  
@@ -52,7 +53,7 @@ MINUS:'-';
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-INTLITERAL: (DIGIT)+ (~('a'..'z')) ;
+
 
 OP_ATRIB: '=';
 
@@ -69,8 +70,8 @@ OP_EQ : ('=='|'!=') ;
 OP_COND: ('&&'|'||');
 
 EXCLAMATION: '!';
-fragment
-DIGIT  : ('0'..'9');
+
+
 
 fragment
 LETTER  : ('a'..'z' | 'A'..'Z');

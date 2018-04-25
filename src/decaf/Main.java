@@ -149,9 +149,10 @@ class Main {
                                                  case DecafLexer.HEXDEX:
 		        				type = " INTLITERAL";
 		        				break;
-                                                 case DecafLexer.INTLITERAL:
+                                                 case DecafLexer.INTLIT:
 		        				type = " INTLITERAL";
 		        				break;
+                                                 
 
 		        			case DecafLexer.ID:
 		        				type = " IDENTIFIER";

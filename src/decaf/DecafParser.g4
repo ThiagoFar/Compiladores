@@ -10,22 +10,24 @@ options
   tokenVocab=DecafLexer;
 }
 
+//program: ID LCURLY RCURLY EOF;
+
 program: CLASS PROGRAM LCURLY field_decl* method_decl*   RCURLY EOF; 
 
 field_decl: type ID (COMMA type ID)* SEMICOLON
-			| type ID LBRACKET int_literal RBRACKET(COMMA type ID LBRACKET int_literal RBRACKET)* SEMICOLON ;
+			| type ID LBRACKET int_literal RBRACKET (COMMA type ID LBRACKET int_literal RBRACKET)* SEMICOLON ;
 
-method_decl: ( type | VOID ) ID LPARENTHESIS( type ID (COMMA type ID)* )* RPARENTHESIS block ;
+method_decl: ( type | VOID ) ID LPARENTHESIS ( type ID (COMMA type ID)* )* RPARENTHESIS block ;
 
 block: LCURLY var_decl* statement* RCURLY;
 
-var_decl: type ID (COMMA (type ID | ID))* SEMICOLON;
+var_decl: type ID (VIRG (type ID | ID))* SEMICOLON;
 
 type: INT | BOOLEAN;
 
 int_literal: decimal_literal | hex_literal;
 
-decimal_literal: INTLITERAL;
+decimal_literal: INTLIT;
 
 hex_literal: HEXDEX;
 
@@ -41,11 +43,11 @@ statement: location assign_op expr SEMICOLON
 assign_op: OP_ATRIB | OP_ATR_INCR | OP_ATR_DECR;
 			
 method_call: method_name LPARENTHESIS (expr (COMMA expr)*)* RPARENTHESIS
-				| CALLOUT LPARENTHESIS string_literal (COMMA callout_arg)* RPARENTHESIS  ;
+				| CALLOUT LPARENTHESIS string_literal (COMMA callout_arg)* RPARENTHESIS ;
 
 method_name : ID;
 
-location: ID | ID LBRACKET expr RBRACKET;
+location: ID | ID LBRACKET expr RBRACKET ;
 
 expr: location
 		| method_call
@@ -53,7 +55,7 @@ expr: location
 		| expr bin_op expr
 		| MINUS expr
 		| EXCLAMATION expr
-		| LPARENTHESIS  expr RPARENTHESIS ;
+		| LPARENTHESIS expr RPARENTHESIS;
 
 callout_arg     : expr | string_literal ;
 
@@ -71,7 +73,52 @@ literal : int_literal | char_literal | bool_literal ;
 
 bool_literal : BOOLEANLITERAL;
 
-char_literal : CHARLIT;
+char_literal : CHARLIT ;
 
 string_literal : STRINGLIT ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
 
