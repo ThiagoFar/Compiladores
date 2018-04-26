@@ -88,7 +88,7 @@ class Main {
 		        				type = " STRINGLITERAL";
 		        				break;
                                                 
-		        				break;
+		        				
                                              
          
                                                 case DecafLexer.OP_ATR_DECR:
