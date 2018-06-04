@@ -10,127 +10,42 @@ options
   tokenVocab=DecafLexer;
 }
 
+program: TK_class LCURLY field_decl* method_decl* RCURLY EOF;
 
 
-program: CLASS PROGRAM LCURLY field_decl* method_decl*   RCURLY EOF; 
+field_decl: TIPO ID (VIRGULA TIPO ID)* PONTVIRGULA
+	| TIPO ID ECOLC INTLITERAL DCOLC (VIRGULA TIPO ID ECOLC INTLITERAL DCOLC)* PONTVIRGULA ;
 
-field_decl:               type ID (COMMA type ID)* SEMICOLON
-			| type ID LBRACKET int_literal RBRACKET (COMMA type ID LBRACKET int_literal RBRACKET)* SEMICOLON ;
-
-method_decl: ( type | VOID ) ID LPARENTHESIS ( type ID (COMMA type ID)* )* RPARENTHESIS block ;
+method_decl: (TIPO | VOID) ID EPAR (TIPO ID (VIRGULA TIPO ID)*)? DPAR block;
 
 block: LCURLY var_decl* statement* RCURLY;
 
-var_decl: type ID (COMMA (type ID | ID))* SEMICOLON;
+var_decl: TIPO ID (VIRGULA (TIPO |ID))* PONTVIRGULA;
 
-type: INT 
-    | BOOLEAN;
+statement: location assing_op expr PONTVIRGULA
+	| method_call PONTVIRGULA
+	| IF EPAR expr DPAR block (ELSE block)?
+	| FOR ID ATRIB expr VIRGULA expr block
+	| RETURN (expr)? PONTVIRGULA
+	| BREAK PONTVIRGULA
+	| CONTINUE PONTVIRGULA
+	| block;
 
-int_literal: decimal_literal 
-           | hex_literal;
+assing_op: ATRIB
+	|MAIS ATRIB
+	|MENOS ATRIB;
 
-decimal_literal: INTLIT;
+method_call: ID EPAR (expr (VIRGULA expr)*)? DPAR
+	| CALLOUT EPAR STRING ((VIRGULA (expr | STRING))*)? DPAR;
 
-hex_literal: HEXDEX;
+location: ID
+	|ID ECOLC expr DCOLC;
 
-statement:                location assign_op expr SEMICOLON
-			| method_call SEMICOLON
-			| IF LPARENTHESIS expr RPARENTHESIS block (ELSE block)*
-			| FOR ID OP_ATRIB expr COMMA expr block
-			| RETURN expr* SEMICOLON
-			| BREAK SEMICOLON
-			| CONTINUE SEMICOLON
-			| block ;
-			
-assign_op: OP_ATRIB  
-         | OP_ATR_INCR 
-         | OP_ATR_DECR;
-			
-method_call:              method_name LPARENTHESIS (expr (COMMA expr)*)* RPARENTHESIS
-		        | CALLOUT LPARENTHESIS string_literal (COMMA callout_arg)* RPARENTHESIS ;
-
-method_name : ID;
-
-location:      ID 
-             | ID LBRACKET expr RBRACKET ;
-
-expr:             location
-		| method_call
-		| literal
-		| expr bin_op expr
-		| MINUS expr
-		| EXCLAMATION expr
-		| LPARENTHESIS expr RPARENTHESIS;
-
-callout_arg     : expr 
-                | string_literal ;
-
-bin_op          : arith_op 
-                | rel_op 
-                | eq_op 
-                | cond_op ;
-
-arith_op        : OP_ARIT 
-                | MINUS ;
-
-rel_op : OP_REL ;
-
-eq_op : OP_EQ ;
-
-cond_op : OP_COND ;
-
-literal : int_literal 
-        | char_literal 
-        | bool_literal ;
-
-bool_literal : BOOLEANLITERAL;
-
-char_literal : CHARLIT ;
-
-string_literal : STRINGLIT ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-			
+expr: location
+	| method_call
+	| (INTLITERAL|CHAR|BOOLEAN)
+	| expr (OP_ARITH|OP_RELACIO|OP_EQUID|OP_COND|MAIS|MENOS) expr
+	| MENOS expr
+	| EXCAMACAO expr
+	| EPAR expr DPAR;
 
