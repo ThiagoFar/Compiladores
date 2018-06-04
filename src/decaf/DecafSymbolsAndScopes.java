@@ -1,33 +1,20 @@
 package decaf;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.antlr.symtab.FunctionSymbol;
-
 import org.antlr.symtab.GlobalScope;
-
 import org.antlr.symtab.LocalScope;
-
 import org.antlr.symtab.Scope;
-
 import org.antlr.symtab.VariableSymbol;
-
 import org.antlr.symtab.Symbol;
-
 import org.antlr.v4.runtime.misc.NotNull;
-
 import org.antlr.v4.runtime.ParserRuleContext;
-
 import org.antlr.v4.runtime.Token;
-
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
-
 import decaf.ExceptionList.MainNaoEncontradoException;
 import decaf.ExceptionList.VariavelNaoInstanciadaException;
 import decaf.ExceptionList.TamanhoNaoValidoException;
 import decaf.ExceptionList.NumeroDeArgumentosMetodoInvalidoException;
-
 import decaf.DecafParser.Assing_opContext;
 import decaf.DecafParser.ExprContext;
 import decaf.DecafParser.Field_declContext;
@@ -58,11 +45,10 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 	@Override
 
 	public void enterProgram(DecafParser.ProgramContext ctx) {
-		System.out.println("---------------------Inicio enterProgram----------------------" );
+		
 		globals = new GlobalScope(null);
 		pushScope(globals);
 		System.out.println();
-		System.out.println("---------------------Fim enterProgram-------------------------" );
 		System.out.println();
 		System.out.println();
 
@@ -71,7 +57,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 	@Override
 
 	public void exitProgram(DecafParser.ProgramContext ctx) {
-		System.out.println("---------------------Inicio exitProgram------------------" );
+	
 		
 		System.out.println(globals);
 		
@@ -99,7 +85,6 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 		//verifica se tem metodo main
 		
 		System.out.println();
-		System.out.println("---------------------Fim exitProgram------------------" );
 		System.out.println();
 		System.out.println();
 
@@ -108,8 +93,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 	@Override
 
 	public void enterMethod_decl(DecafParser.Method_declContext ctx) {
-		System.out.println("---------------------Inicio enterMethod_decl------------------" );
-		
+	
 		// int typeTokenType = ctx.start.getType();
 
 		// DecafSymbol.Type type = this.getType(typeTokenType);
@@ -135,7 +119,6 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 		pushScope(function);
 		System.out.println();
-		System.out.println("---------------------Fim enterMethod_decl---------------------" );
 		System.out.println();
 		System.out.println();
 	}
@@ -143,46 +126,31 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 	@Override
 
 	public void exitMethod_decl(DecafParser.Method_declContext ctx) {
-		System.out.println("---------------------Inicio exitMethod_decl------------------" );
-		
-		
 		
 		popScope();
-		System.out.println();
-		System.out.println("---------------------Fim exitMethod_decl---------------------" );
-		System.out.println();
-		System.out.println();
+	
 		}
 
 	@Override
 
 	public void enterBlock(DecafParser.BlockContext ctx) {
-		System.out.println("---------------------Inicio enterBlock------------------" );
 		LocalScope l = new LocalScope(currentScope);
 		saveScope(ctx, currentScope);
 
 		// pushScope(l);
-		System.out.println();
-		System.out.println("---------------------Fim enterBlock--------------------" );
-		System.out.println();
-		System.out.println();
+		
 	}
 
 	@Override
 
 	public void exitBlock(DecafParser.BlockContext ctx) {
-		System.out.println("---------------------Inicio exitBlock------------------" );
-		//popScope();
-		System.out.println();
-		System.out.println("---------------------Fim exitBlock---------------------" );
-		System.out.println();
-		System.out.println();
+		
 	}
 
 	@Override
 
 	public void enterField_decl(DecafParser.Field_declContext ctx) {
-		System.out.println("---------------------Inicio enterField_decl---------------------" );
+		
 		
 		
 		//Verifica se e um array
@@ -213,113 +181,67 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 		currentScope.define(var); // Define symbol in current scope
 		
 		//defineVar(ctx.ID().get(0), ctx.ID().get(0).getSymbol());
-		System.out.println();
-		System.out.println("---------------------Fim enterField_decl------------------" );
-		System.out.println();
-		System.out.println();
+		
 	}
 
 	@Override
 
 	public void exitField_decl(DecafParser.Field_declContext ctx) {
-		System.out.println("---------------------Inicio exitField_decl---------------------" );
 		String name = ctx.ID().get(0).getSymbol().getText();
 
-	/*	Symbol var = currentScope.resolve(name);
-
-		if (var == null) {
-
-			this.error(ctx.ID().get(0).getSymbol(), "no such variable: " + name);
-
-		}
-
-		if (var instanceof FunctionSymbol) {
-
-			this.error(ctx.ID().get(0).getSymbol(), name + " is not a variable");
-
-		}*/
-		System.out.println();
-		System.out.println("---------------------Fim exitField_decl---------------------" );
-		System.out.println();
-		System.out.println();
+	
+		
 	}
 	
 	@Override
 	public void enterVar_decl(Var_declContext ctx) {
-		System.out.println("---------------------Inicio enterVar_decl------------------" );
+	
 
 		int typeTokenType = ctx.start.getType();
 		
 		VariableSymbol var = new VariableSymbol(ctx.ID(0).getText());
 
-		// DecafSymbol.Type type = this.getType(typeTokenType);
+	
 
-		// var.setType(type);
+	
 
 		currentScope.define(var); // Define symbol in current scope
-		System.out.println();
-		System.out.println("---------------------Fim enterVar_decl---------------------" );
-		System.out.println();
-		System.out.println();
+	
 	}
 	
 	@Override
 	public void exitVar_decl(Var_declContext ctx) {
-		System.out.println("---------------------Inicio exitVar_decl------------------" );
-		
-		System.out.println();
-		System.out.println("---------------------Fim exitVar_decl---------------------" );
-		System.out.println();
-		System.out.println();
+	
 	}
 	
 	@Override
 	public void enterStatement(StatementContext ctx) {
-		System.out.println("---------------------Inicio enterStatement------------------" );
-		
-		System.out.println();
-		System.out.println("---------------------Fim enterStatement---------------------" );
-		System.out.println();
-		System.out.println();
+	
 	}
 	
 	@Override
 	public void exitStatement(StatementContext ctx) {
-		System.out.println("---------------------Inicio exitStatement------------------" );
-		System.out.println();
-		System.out.println("---------------------Fim exitStatement---------------------" );
-		System.out.println();
-		System.out.println();
+	
 	}
 	
 	@Override
 	public void enterAssing_op(Assing_opContext ctx) {
-		System.out.println("---------------------Inicio enterAssing_op------------------" );
-		System.out.println();
-		System.out.println("---------------------Fim enterAssing_op---------------------" );
-		System.out.println();
-		System.out.println();
+	
 	}
 	
 	@Override
 	public void exitAssing_op(Assing_opContext ctx) {
-		System.out.println("---------------------Inicio exitAssing_op------------------" );
-		System.out.println();
-		System.out.println("---------------------Fim exitAssing_op---------------------" );
-		System.out.println();
-		System.out.println();
+		
 	}
 	
 	@Override
 	public void enterMethod_call(Method_callContext ctx) {
-		System.out.println("---------------------Inicio enterMethod_call------------------" );
 		
-		//Verifica se cumpre tds os argumento do metodo
 		for(DecafParser.Method_declContext i : listaMetodos) {
 			if(i.ID(0).getText().equals(ctx.ID().getText())) {
 				if(scopes.get(i).getNumberOfSymbols() > ctx.expr().size()) {
 					try {
-						throw new NumeroDeArgumentosMetodoInvalidoException(scopes.get(i).getName(), "menor");
+						throw new NumeroDeArgumentosMetodoInvalidoException(scopes.get(i).getName(), "Menor");
 					} catch (NumeroDeArgumentosMetodoInvalidoException e) {
 						// TODO Auto-generated catch block
 						System.out.println(e.toString());
@@ -327,7 +249,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 					}
 				}else if (scopes.get(i).getNumberOfSymbols() < ctx.expr().size()){
 					try {
-						throw new NumeroDeArgumentosMetodoInvalidoException(scopes.get(i).getName(), "maior");
+						throw new NumeroDeArgumentosMetodoInvalidoException(scopes.get(i).getName(), "Maior");
 					} catch (NumeroDeArgumentosMetodoInvalidoException e) {
 						// TODO Auto-generated catch block
 						System.out.println(e.toString());
@@ -340,29 +262,17 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 		
 		
 		
-		/*System.out.println("Simbolos de "+scopes.get(teste).getName());
-		for(int i = 0; i < scopes.get(teste).getSymbols().size(); i++) {
-			System.out.println(scopes.get(teste).getSymbols().get(i));
-		}*/
 		
-		System.out.println();
-		System.out.println("---------------------Fim enterMethod_call---------------------" );
-		System.out.println();
-		System.out.println();
 	}
 	
 	@Override
 	public void exitMethod_call(Method_callContext ctx) {
-		System.out.println("---------------------Inicio exitMethod_call------------------" );
-		System.out.println();
-		System.out.println("---------------------Fim exitMethod_call---------------------" );
-		System.out.println();
-		System.out.println();
+		
 	}
 	
 	@Override
 	public void enterLocation(LocationContext ctx) {
-		System.out.println("---------------------Inicio enterLocation------------------" );
+	
 		
 		if(currentScope.getSymbol(ctx.ID().getText()) == null) {
 			try {
@@ -375,69 +285,27 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 			
 		}		
 		
-		System.out.println();
-		System.out.println("---------------------Fim enterLocation---------------------" );
-		System.out.println();
-		System.out.println();
+		
 	}
 	
 	@Override
 	public void exitLocation(LocationContext ctx) {
-		System.out.println("---------------------Inicio exitLocation------------------" );
-		System.out.println();
-		System.out.println("---------------------Fim exitLocation---------------------" );
-		System.out.println();
-		System.out.println();
+	
 	}
 	
 	@Override
 	public void enterExpr(ExprContext ctx) {
-		System.out.println("---------------------Inicio enterExpr------------------" );
-		System.out.println();
-		System.out.println("---------------------Fim enterExpr---------------------" );
-		System.out.println();
-		System.out.println();
+		
 	}
 	
 	@Override
 	public void exitExpr(ExprContext ctx) {
-		System.out.println("---------------------Inicio exitExpr------------------" );
 		
-		
-		
-		
-		System.out.println();
-		System.out.println("---------------------Fim exitExpr---------------------" );
-		System.out.println();
-		System.out.println();
 	}
 	
 	
 
-	/*void defineVar(DecafParser.Var_declContext typeCtx, Token nameToken) {
-
-		int typeTokenType = typeCtx.start.getType();
-
-		VariableSymbol var = new VariableSymbol(nameToken.getText());
-
-		// DecafSymbol.Type type = this.getType(typeTokenType);
-
-		// var.setType(type);
-
-		currentScope.define(var); // Define symbol in current scope
-
-	}*/
-
-	/**
-	 * 
-	 * M\E9todo que atuliza o escopo para o atual e imprime o valor
-	 *
-	 * 
-	 * 
-	 * @param s
-	 * 
-	 */
-
+	
 	private void pushScope(Scope s) {
 
 		currentScope = s;
@@ -446,17 +314,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 	}
 
-	/**
-	 * 
-	 * M\E9todo que cria um novo escopo no contexto fornecido
-	 *
-	 * 
-	 * 
-	 * @param ctx
-	 * 
-	 * @param s
-	 * 
-	 */
+	
 
 	void saveScope(ParserRuleContext ctx, Scope s) {
 
@@ -464,11 +322,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 	}
 
-	/**
-	 * 
-	 * Muda para o contexto superior e atualia o escopo
-	 * 
-	 */
+	
 
 	private void popScope() {
 
@@ -486,17 +340,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 	}
 
-	/**
-	 * 
-	 * Valida tipos encontrados na linguagem para tipos reais
-	 *
-	 * 
-	 * 
-	 * @param tokenType
-	 * 
-	 * @return
-	 * 
-	 */
+	
 
 	public static DecafSymbol.Type getType(int tokenType) {
 
