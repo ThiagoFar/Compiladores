@@ -15,13 +15,13 @@ public class CompiladorArthurException extends Exception {
 	
 	public static class VariavelNaoInstanciadaException extends CompiladorArthurException{
 		public VariavelNaoInstanciadaException(String var) {
-			super("Variavel '"+var+"' nao instanciada.");
+			super("Variavel '"+var+"' não instanciada.");
 		}
 	}
 	
 	public static class MainNaoEncontradoException extends CompiladorArthurException{
 		public MainNaoEncontradoException() {
-			super("Metodo Main nao encontrado.");
+			super("Método Main não encontrado.");
 		}
 	}
 	

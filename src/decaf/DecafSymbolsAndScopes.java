@@ -430,7 +430,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 	/**
 	 * 
-	 * Metodo que atuliza o escopo para o atual e imprime o valor
+	 * Método que atuliza o escopo para o atual e imprime o valor
 	 *
 	 * 
 	 * 
@@ -448,7 +448,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 	/**
 	 * 
-	 * Metodo que cria um novo escopo no contexto fornecido
+	 * Método que cria um novo escopo no contexto fornecido
 	 *
 	 * 
 	 * 
