@@ -23,10 +23,10 @@ import org.antlr.v4.runtime.Token;
 
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
-import decaf.CompiladorArthurException.MainNaoEncontradoException;
-import decaf.CompiladorArthurException.VariavelNaoInstanciadaException;
-import decaf.CompiladorArthurException.TamanhoNaoValidoException;
-import decaf.CompiladorArthurException.NumeroDeArgumentosMetodoInvalidoException;
+import decaf.ExceptionList.MainNaoEncontradoException;
+import decaf.ExceptionList.VariavelNaoInstanciadaException;
+import decaf.ExceptionList.TamanhoNaoValidoException;
+import decaf.ExceptionList.NumeroDeArgumentosMetodoInvalidoException;
 
 import decaf.DecafParser.Assing_opContext;
 import decaf.DecafParser.ExprContext;
@@ -430,7 +430,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 	/**
 	 * 
-	 * Método que atuliza o escopo para o atual e imprime o valor
+	 * M\E9todo que atuliza o escopo para o atual e imprime o valor
 	 *
 	 * 
 	 * 
@@ -448,7 +448,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
 	/**
 	 * 
-	 * Método que cria um novo escopo no contexto fornecido
+	 * M\E9todo que cria um novo escopo no contexto fornecido
 	 *
 	 * 
 	 * 
