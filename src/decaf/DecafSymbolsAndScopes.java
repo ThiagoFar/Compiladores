@@ -237,29 +237,6 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 	@Override
 	public void enterMethod_call(Method_callContext ctx) {
 		
-		for(DecafParser.Method_declContext i : listaMetodos) {
-			if(i.ID(0).getText().equals(ctx.ID().getText())) {
-				if(scopes.get(i).getNumberOfSymbols() > ctx.expr().size()) {
-					try {
-						throw new NumeroDeArgumentosMetodoInvalidoException(scopes.get(i).getName(), "Menor");
-					} catch (NumeroDeArgumentosMetodoInvalidoException e) {
-						// TODO Auto-generated catch block
-						System.out.println(e.toString());
-						System.exit(0);
-					}
-				}else if (scopes.get(i).getNumberOfSymbols() < ctx.expr().size()){
-					try {
-						throw new NumeroDeArgumentosMetodoInvalidoException(scopes.get(i).getName(), "Maior");
-					} catch (NumeroDeArgumentosMetodoInvalidoException e) {
-						// TODO Auto-generated catch block
-						System.out.println(e.toString());
-						System.exit(0);
-					}
-				}
-				
-			}
-		}
-		
 		
 		
 		
@@ -274,16 +251,6 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 	public void enterLocation(LocationContext ctx) {
 	
 		
-		if(currentScope.getSymbol(ctx.ID().getText()) == null) {
-			try {
-				throw new VariavelNaoInstanciadaException(ctx.ID().getText());
-			} catch (VariavelNaoInstanciadaException e) {
-				// TODO Auto-generated catch block
-				System.out.println(e.toString());
-				System.exit(0);
-			}
-			
-		}		
 		
 		
 	}
